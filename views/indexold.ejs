@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		<%if(query){%>
+		<%= query %> to Philosophy
+		<%} else {%>
+		Path to Philosophy
+		<%}%>
+	</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<!--http://code.jquery.com/jquery-1.11.3.min.js-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+	<script src="http://malsup.github.com/jquery.form.js"></script> 
+
+	<script> 
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+        	$('#myForm').ajaxForm(function() { 
+            	//var parameters = { search: $(this).val() };
+            	$.get( '/search',{q:"kek"}, function(data) {
+            		$('#foo').html(data.title);
+            	});
+            });
+        });
+    </script> 
+</head>
+<body>
+	<div class="top">
+		<h1>Path to Philosophy</h1>
+		<form method='post'>
+			<input type='search', name='myquery', class="searchbar"
+			placeholder='From?', autofocus="autofocus"/>
+		</form>
+	</div>
+
+	<%if(found){%>
+	<table class="results">
+		<% for(var i = 0;i<minPath.length;i++){ %>
+		<tr>
+			<td class="minPath">
+				<a target="_blank" href="https://en.wikipedia.org/wiki/<%=minPath[i]%>"><%=minPath[i]%></a>
+			</td>
+			<td class="maxPath">
+				<a target="_blank" href="https://en.wikipedia.org/wiki/<%=maxPath[i]%>"><%=maxPath[i]%></a>
+			</td>
+		</tr>
+		<%}%>
+	</table>
+	<%} else if(query){%>
+	<p class="error">Couldn't find <%=query%>. Sorry :c</p>
+	<%}%>
+
+
+	<form id="myForm" method="post"> 
+		<input type="submit" value="Submit Comment" /> 
+	</form>
+</body>
+</html>
+

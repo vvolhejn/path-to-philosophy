@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		<%if(query){%>
+		<%= query %> to Philosophy
+		<%} else {%>
+		Path to Philosophy
+		<%}%>
+	</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="javascripts/url.min.js"></script> 
+	<script src="javascripts/search.js"></script> 
+</head>
+<body>
+	<div class="wrapper">
+		<div class="top">
+			<h1>Path to Philosophy</h1>
+			<form class="search" id="searchform" action="/" method="get">
+				<input type='search', name='q', id="searchbar"
+				placeholder='From?', autofocus="autofocus"/>
+			</form>
+			<a id="random" href="/?random">Random</a>
+			<p id="explanation" class="sans">Enter a Wikipedia article to see how to click your way to Philosophy in the fewest number of clicks!</p>
+		</div>
+		<table id="results">
+			<thead>
+				<th class="minpath">Through smaller articles</th>
+				<th class="maxpath">Through larger articles</th>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<p id="error" class="sans"></p>
+		<img src="images/loader.gif" id="loader">
+		<div class="push"></div>
+	</div>
+
+	<footer>
+		<p>&copy; 2015 Václav Volhejn. All Rights Reserved</p>
+	</footer>
+</body>
+</html>
+
